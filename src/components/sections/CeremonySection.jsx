@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRef, useEffect, useState, useCallback } from 'react';
 import FloatingHearts from '../ui/FloatingHearts';
-import html2canvas from 'html2canvas';
+import domtoimage from 'dom-to-image-more';
 
 const letterParagraphs = [
   "Untuk Ratna,",
@@ -123,18 +123,15 @@ export default function CeremonySection({ onDone }) {
     if (!finalRef.current) return;
     setDownloading(true);
     try {
-      const canvas = await html2canvas(finalRef.current, {
-        backgroundColor: '#09090B',
-        scale: 2,
-      });
+      const dataUrl = await domtoimage.toPng(finalRef.current, { bgColor: '#09090B' });
       const link = document.createElement('a');
       link.download = 'surat-cinta-untuk-ratna.png';
-      link.href = canvas.toDataURL();
+      link.href = dataUrl;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
     } catch (e) {
-      alert('Maaf,下载 gagal. Coba screenshot manual ya.');
+      alert('Maaf, download gagal. Coba screenshot manual ya.');
     }
     setDownloading(false);
   };
