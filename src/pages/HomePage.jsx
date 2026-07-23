@@ -52,6 +52,7 @@ export default function HomePage() {
   const handleAnswer = useCallback(async (answer) => {
     if (answer === 'yes') {
       track('answer_yes');
+      await trackAnswer(answer);
       setShowCeremony(true);
       setTimeout(() => scrollToSection('ceremony'), 100);
     } else {
