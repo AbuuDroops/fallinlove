@@ -125,14 +125,16 @@ export default function CeremonySection({ onDone }) {
     try {
       const canvas = await html2canvas(finalRef.current, {
         backgroundColor: '#09090B',
-        scale: 3,
+        scale: 2,
       });
       const link = document.createElement('a');
       link.download = 'surat-cinta-untuk-ratna.png';
       link.href = canvas.toDataURL();
+      document.body.appendChild(link);
       link.click();
+      document.body.removeChild(link);
     } catch (e) {
-      console.error(e);
+      alert('Maaf,下载 gagal. Coba screenshot manual ya.');
     }
     setDownloading(false);
   };
