@@ -32,7 +32,7 @@ export default function MusicPlayer({ startOnPlay }) {
     <>
       <audio ref={audioRef} loop preload="auto">
         <source
-          src="/src/assets/H.E.R. - Best Part (Lyrics) Ft. Daniel Caesar.mp3"
+          src="/H.E.R. - Best Part (Lyrics) Ft. Daniel Caesar.mp3"
           type="audio/mpeg"
         />
       </audio>
